@@ -39,6 +39,7 @@ def steam(search_term):
     # Provide a link to the store page
     link = game['href']
     
+    # Print the results
     print("Steam:")
     print(name)
     if sale:
