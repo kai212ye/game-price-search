@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtGui import QPixmap, QKeySequence
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QShortcut
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QShortcut, QWidget, QLabel
 import sys, consts, search_functions
 
 # Configures a class for the app that inherits from QMainWindow
@@ -55,6 +55,8 @@ class AppWindow(QMainWindow):
                              "\nPrice: " + price + "\nLink: " + link)
         else:
             search_result = ("Game title: " + name + "\nPrice: " + price + "\nLink: " + link)
+            
+        
         
         self.label.setText(search_result)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
