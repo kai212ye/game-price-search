@@ -1,5 +1,5 @@
 ## Game Price Searcher
-This is a Python Script that aims to search different websites for the cheapest price for a given game. Currently only supports Steam store, but more stores will be added in the future, as well as a GUI.
+This is a Python Script that aims to search different websites for the cheapest price for a given game. Currently only supports Steam store, but more stores will be added in the future. Other future goals include polishing up the GUI and improving searching abilities.
 
 ## Dependencies
 This project is written using Python 3.9 and uses BeautifulSoup4 and PyQT5, which can be installed using the following commands:
