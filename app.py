@@ -44,7 +44,11 @@ class AppWindow(QMainWindow):
         
         
         
-        name, sale, original_price, price, link = search_functions.steam(input_term)
+        try:
+            name, sale, original_price, price, link = search_functions.steam(input_term)
+        except ValueError:
+            self.label.setText("No results found.")
+            return()
         
         if sale:
             search_result = ("Game title: " + name + "\nOn sale!" + "\nOriginal Price: " + original_price +
