@@ -47,5 +47,7 @@ def steam(search_term):
         print("Original price: " + original_price)
     print("Price: " + price)
     print(link)
+    
+    return(name, sale, original_price, price, link)
         
     

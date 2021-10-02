@@ -1,6 +1,7 @@
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow
-import sys, consts
+from PyQt5 import QtWidgets, QtCore
+from PyQt5.QtGui import QPixmap, QKeySequence
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QShortcut
+import sys, consts, search_functions
 
 # Configures a class for the app that inherits from QMainWindow
 class AppWindow(QMainWindow):
@@ -17,6 +18,7 @@ class AppWindow(QMainWindow):
         # Labels the window
         self.label = QtWidgets.QLabel(self)
         self.label.setText(consts.WINDOW_TITLE)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.adjustSize()
         self.label.move(consts.TITLE_X, consts.TITLE_Y)
         
@@ -26,16 +28,40 @@ class AppWindow(QMainWindow):
         self.search.move(consts.SEARCH_X, consts.SEARCH_Y)
         self.search.clicked.connect(self.click_search)
         
+        self.shortcut = QShortcut(QKeySequence("Return"), self)
+        self.shortcut.activated.connect(self.click_search)
+        
+        # Create a search bar
+        self.search_bar = QtWidgets.QLineEdit(self)
+        self.search_bar.move(consts.BAR_X, consts.BAR_Y)
+        self.search_bar.resize(consts.BAR_WIDTH, consts.BAR_HEIGHT)
+        
+        
+    
     # Defines search button behaviour
     def click_search(self):
-        self.label.setText("YOU'VE PRESSED THE BUTTON")
+        input_term = self.search_bar.text()
+        
+        
+        
+        name, sale, original_price, price, link = search_functions.steam(input_term)
+        
+        if sale:
+            search_result = ("Game title: " + name + "\nOn sale!" + "\nOriginal Price: " + original_price +
+                             "\nPrice: " + price + "\nLink: " + link)
+        else:
+            search_result = ("Game title: " + name + "\nPrice: " + price + "\nLink: " + link)
+        
+        self.label.setText(search_result)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
         self.update()
-        print("YEAH PRESS ME DADDY")
         
     # Updates the window every time changes occur
     def update(self):
         self.label.adjustSize()
         
+
 
 # Entry point for the app
 def window():
@@ -47,6 +73,8 @@ def window():
     # Runs and exits the app
     win.show()
     sys.exit(app.exec_())
+    
+    
     
     
     
