@@ -22,12 +22,11 @@ class AppWindow(QMainWindow):
         self.label.adjustSize()
         self.label.move(consts.TITLE_X, consts.TITLE_Y)
         
-        # Adds a search button
+        # Adds a search button and the Enter key as its shortcut
         self.search = QtWidgets.QPushButton(self)
         self.search.setText(consts.SEARCH_BTN)
         self.search.move(consts.SEARCH_X, consts.SEARCH_Y)
         self.search.clicked.connect(self.click_search)
-        
         self.shortcut = QShortcut(QKeySequence("Return"), self)
         self.shortcut.activated.connect(self.click_search)
         
@@ -38,12 +37,11 @@ class AppWindow(QMainWindow):
         
         
     
-    # Defines search button behaviour
+    # Defines search button behaviour and handles the search function
     def click_search(self):
         input_term = self.search_bar.text()
         
-        
-        
+        # Configure the output based on Steam search results, and handles error when no results are found.
         try:
             name, sale, original_price, price, link = search_functions.steam(input_term)
         except ValueError:
@@ -57,7 +55,7 @@ class AppWindow(QMainWindow):
             search_result = ("Game title: " + name + "\nPrice: " + price + "\nLink: " + link)
             
         
-        
+        # Update and display search results 
         self.label.setText(search_result)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
