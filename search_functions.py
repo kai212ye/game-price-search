@@ -27,7 +27,7 @@ def steam(search_term):
     # Check whether the game is on sale, and find the price
     sale = False
     original_price = None
-    if game.find(class_="col search_price discounted responsive_secondrow") == None:
+    if game.find(class_="col search_price discounted responsive_secondrow") is None:
         price = game.find(class_="col search_price responsive_secondrow").string
     else:
         price = str(
