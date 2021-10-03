@@ -13,12 +13,12 @@ This project is written using Python 3.9 and uses BeautifulSoup4 and PyQT5, whic
 2. When prompted, type in a search term and press enter.
 
 - **GUI USAGE (Terminal):**
-1. In a terminal, navigate to the project directory and run `py app.py`.
+1. In a terminal, navigate to the project directory and run `py game_search_app.py`.
 2. Enter a game title into the search bar.
 3. Press the search button or the Enter key.
 
 - **GUI USAGE (.exe):**
-1. Run `app.exe`
+1. Run `game_search_app.exe`
 2. Enter a game title into the search bar.
 3. Press the search button or the Enter key.
 
